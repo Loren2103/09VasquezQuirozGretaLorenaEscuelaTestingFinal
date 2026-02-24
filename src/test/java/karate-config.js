@@ -7,13 +7,15 @@ function fn() {
 
   if (env == 'dev') {
     apiPetStore = 'https://petstore.swagger.io/v2/'
+    passwordUsuario = 'TestPass123!';
   } else if (env == 'cert') {
   }
 
   var config = {
       env: env,
       myVarName: 'someValue',
-      apiPetStore: apiPetStore
+      apiPetStore: apiPetStore,
+      passwordUsuario: passwordUsuario
   }
 
   return config;

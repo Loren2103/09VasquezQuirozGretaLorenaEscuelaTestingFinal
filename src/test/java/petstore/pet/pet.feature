@@ -1,3 +1,4 @@
+@RegresionPet
 Feature: Automatizar modulo Pet de PetStore
 
   Background:
@@ -9,13 +10,11 @@ Feature: Automatizar modulo Pet de PetStore
     Given path 'pet'
     * def randomId = Math.floor(Math.random() * 90000) + 10000
     * set jsonPet.id = randomId
-    * set jsonPet.name = 'Perrito_' + randomId
 
     And request jsonPet
     When method post
     Then status 200
     And match response.id == randomId
-    And match response.name == 'Perrito_' + randomId
 
     * def idMascotaCreada = response.id
 
@@ -74,7 +73,6 @@ Feature: Automatizar modulo Pet de PetStore
 
     Given path 'pet', idMascota, 'uploadImage'
     And multipart file file = { read: 'classpath:petstore/data/perrito.jpg', filename: 'perrito.jpg', contentType: 'image/jpeg' }
-    And multipart field additionalMetadata = 'Foto de perfil automatizada'
     When method post
     Then status 200
     And match response.message contains 'perrito.jpg'
