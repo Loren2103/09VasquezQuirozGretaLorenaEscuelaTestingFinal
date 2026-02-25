@@ -1,6 +1,6 @@
 # Test Automatizado API PetStore - Karate
 
-Este proyecto contiene la automatización de pruebas para la API pública de [Swagger PetStore](https://petstore.swagger.io/v2/).
+Este proyecto contiene la automatización de pruebas para la API pública de [Swagger PetStore](https://petstore.swagger.io/).
 
 ## 1. Prerrequisitos
 - **Java 17**
