@@ -4,27 +4,28 @@ Feature: Automatizar modulo User de PetStore
   Background:
     * url apiPetStore
     * def jsonUsuario = read('classpath:petstore/data/usuario-request.json')
-    * def randomId = Math.floor(Math.random() * 90000) + 10000
-    * def nombreUsuario = 'user_' + randomId
 
   @HappyPath @CrearUsuario
   Scenario: Crear un usuario exitosamente sin exponer la contraseña
     Given path 'user'
+
+    * def randomId = Math.floor(Math.random() * 90000) + 10000
     * set jsonUsuario.id = randomId
-    * set jsonUsuario.username = nombreUsuario
+    * set jsonUsuario.username = jsonUsuario.username + randomId
     * set jsonUsuario.password = passwordUsuario
 
     And request jsonUsuario
     When method post
     Then status 200
-    And match response.message == randomId+ ''
+    And match response.message == randomId + ''
 
-    * def username = nombreUsuario
-    * def password = passwordUsuario
+    * def username = jsonUsuario.username
+    * def password = jsonUsuario.password
+    * def id = jsonUsuario.id
 
   @HappyPath @LoginUsuario
   Scenario: Hacer login exitoso con el usuario creado
-    * def creacionResponse = call read('usuario.feature@CrearUsuario')
+    * def creacionResponse = call read('user.feature@CrearUsuario')
 
     Given path 'user/login'
     And param username = creacionResponse.username
@@ -35,7 +36,7 @@ Feature: Automatizar modulo User de PetStore
 
   @HappyPath @ConsultarUsuario
   Scenario: Consultar los datos de un usuario por su username
-    * def creacionResponse = call read('usuario.feature@CrearUsuario')
+    * def creacionResponse = call read('user.feature@CrearUsuario')
     * def usuario = creacionResponse.username
 
     Given path 'user', usuario
@@ -45,22 +46,25 @@ Feature: Automatizar modulo User de PetStore
 
   @HappyPath @ActualizarUsuario
   Scenario: Actualizar los datos de un usuario existente
-    * def creacionResponse = call read('usuario.feature@CrearUsuario')
+    * def creacionResponse = call read('user.feature@CrearUsuario')
     * def usuario = creacionResponse.username
 
     Given path 'user', usuario
-    * set jsonUsuario.id = creacionResponse.randomId
-    * set jsonUsuario.firstName = 'NombreActualizado'
+    * set jsonUsuario.id = creacionResponse.id
+    * set jsonUsuario.username = creacionResponse.username
+    * set jsonUsuario.password = creacionResponse.password
+
+    * set jsonUsuario.firstName = 'Juan Actualizado'
     * set jsonUsuario.phone = '000000000'
 
     And request jsonUsuario
     When method put
     Then status 200
-    And match response.message == creacionResponse.randomId + ''
+    And match response.message == creacionResponse.id + ''
 
   @HappyPath @EliminarUsuario
   Scenario: Eliminar un usuario existente
-    * def creacionResponse = call read('usuario.feature@CrearUsuario')
+    * def creacionResponse = call read('user.feature@CrearUsuario')
     * def usuario = creacionResponse.username
 
     Given path 'user', usuario
