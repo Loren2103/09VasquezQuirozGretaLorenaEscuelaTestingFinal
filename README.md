@@ -2,12 +2,12 @@
 
 Este proyecto contiene la automatización de pruebas para la API pública de [Swagger PetStore](https://petstore.swagger.io/v2/).
 
-## 🛠️ Tecnologías y Herramientas
+## 1. Prerrequisitos
 - **Java 17**
 - **Maven** (Gestor de dependencias y ejecución)
 - **Karate Framework 1.5.0** (Core de automatización API)
 
-## 📁 Estructura del Proyecto
+## 2. Estructura del Proyecto
 El framework utiliza un patrón Data-Driven para separar la lógica de prueba de los datos (payloads).
 
     src/test/java/
@@ -26,13 +26,13 @@ El framework utiliza un patrón Data-Driven para separar la lógica de prueba de
         └── user/               # Módulo de Usuarios
             └── user.feature
 
-## 🚀 Módulos Automatizados
+## 3. Módulos Automatizados
 La automatización cubre escenarios exitosos (`@HappyPath`) y escenarios de validación de errores (`@UnhappyPath`) en 3 módulos principales:
 1. **User:** Creación de usuarios, consulta, actualización, login, logout y eliminación.
 2. **Pet:** Creación, búsqueda por estados, actualización, subida de imágenes y eliminación.
 3. **Store:** Creación, búsqueda y eliminación de órdenes de compra, y consulta de inventarios.
 
-## ⚙️ Ejecución
+## 4. Ejecución
 
 ### 1. Ejecutar desde IDE
 1. Abrir IDE (IntelliJ IDEA, Eclipse, VS Code).
