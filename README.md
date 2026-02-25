@@ -3,9 +3,15 @@
 Este proyecto contiene la automatización de pruebas para la API pública de [Swagger PetStore](https://petstore.swagger.io/).
 
 ## 1. Prerrequisitos
-- **Java 17**
-- **Maven** (Gestor de dependencias y ejecución)
-- **Karate Framework 1.5.0** (Core de automatización API)
+Antes de ejecutar las pruebas, asegúrate de tener instalado y configurado lo siguiente en tu sistema:
+
+- Java 17: El proyecto está configurado para usar Java 17.
+- Apache Maven: Se utiliza para la gestión de dependencias y la ejecución de las pruebas.
+
+**Variables de Entorno:**
+- JAVA_HOME: Debe apuntar al directorio de instalación de tu JDK 17.
+- M2_HOME: Debe apuntar al directorio de instalación de Maven.
+Asegúrate de que las carpetas bin de Java y Maven estén incluidas en la variable Path de tu sistema operativo.
 
 ## 2. Estructura del Proyecto
 El framework utiliza un patrón Data-Driven para separar la lógica de prueba de los datos (payloads).
